@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +19,7 @@ body {
   height: 100%;
   background: #000;
   border-color: #3b3b3b;
-  user-select: none;
+  transition-timing-function: ease-in-out;
 }
 
 canvas {
