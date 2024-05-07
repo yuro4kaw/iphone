@@ -1,37 +1,33 @@
-"use client"
-import React, { useEffect, useState } from "react";
+"use client";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { heroVideo, smallHeroVideo } from "@/constants/exports";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
-  const [windowWidth, setWindowWidth] = useState(0);
+
   const [videoSrc, setVideoSrc] = useState(
-    windowWidth < 760 ? smallHeroVideo : heroVideo
+    window.innerWidth < 760 ? smallHeroVideo : heroVideo
   );
 
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
+  const handleVideoSrcSet = () => {
+    if (window.innerWidth < 760) {
+      setVideoSrc(smallHeroVideo);
+    } else {
+      setVideoSrc(heroVideo);
+    }
   };
 
   useEffect(() => {
-    setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleVideoSrcSet);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("reisze", handleVideoSrcSet);
     };
   }, []);
 
-  useEffect(() => {
-    setVideoSrc(windowWidth < 760 ? smallHeroVideo : heroVideo);
-  }, [windowWidth]);
-
   useGSAP(() => {
-    gsap.to("#hero", {
-      opacity: 1,
-      delay: 2,
-    });
+    gsap.to("#hero", { opacity: 1, delay: 2 });
     gsap.to("#cta", { opacity: 1, y: -50, delay: 2 });
   }, []);
 
@@ -43,7 +39,7 @@ const Hero = () => {
         </p>
         <div className="md:w-10/12 w-9/12">
           <video
-            className="poiner-events-none"
+            className="pointer-events-none"
             autoPlay
             muted
             playsInline={true}
@@ -53,6 +49,7 @@ const Hero = () => {
           </video>
         </div>
       </div>
+
       <div
         id="cta"
         className="flex flex-col items-center opacity-0 translate-y-20"
