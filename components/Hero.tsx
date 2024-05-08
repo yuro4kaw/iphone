@@ -7,13 +7,13 @@ import { useViewportSize } from '@mantine/hooks';
 
 const Hero = () => {
   const [videoSrc, setVideoSrc] = useState(
-    typeof window !== 'undefined' && window.innerWidth > 760 ? smallHeroVideo : heroVideo
+    typeof window !== 'undefined' && window.innerWidth > 720 ? smallHeroVideo : heroVideo
   );
 
   const { width } = useViewportSize();
 
   const handleVideoSrcSet = (width:number) => {
-    if (width < 760) {
+    if (width < 720) {
       setVideoSrc(smallHeroVideo);
     } else {
       setVideoSrc(heroVideo);
@@ -39,7 +39,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="w-full nav-height bg-black relative">
+    <section className="w-full nav-height sm:nav-height-full md:nav-height bg-black relative">
       <div className="h-5/6 w-full flex-center flex-col">
         <p id="hero" className="hero-title">
           iPhone 15 Pro
