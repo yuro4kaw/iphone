@@ -27,11 +27,12 @@ const Chip = () => {
       ease: "power2.inOut",
     });
   }, []);
+  
   return (
     <section className="common-padding">
       <div className="screen-max-width">
-        <div className="flex-center w-full my-20" id="chip">
-          <Image src={chipImg} alt="Chip" width={180} height={180} />
+        <div className="flex-center w-full my-20">
+          <Image id="chip" src={chipImg} alt="Chip" width={180} height={180} />
         </div>
         <div className="flex flex-col items-center">
           <h2 className="hiw-title">
@@ -76,7 +77,7 @@ const Chip = () => {
               </span>
               .
             </p>
-          
+
             <p className="hiw-text g_fadeIn">
               Mobile{" "}
               <span className="text-white">
