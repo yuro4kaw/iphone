@@ -3,14 +3,17 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { heroVideo, smallHeroVideo } from "@/constants/exports";
 import { useEffect, useState } from "react";
+import { useViewportSize } from '@mantine/hooks';
 
 const Hero = () => {
   const [videoSrc, setVideoSrc] = useState(
-    typeof window !== 'undefined' && window.innerWidth < 760 ? smallHeroVideo : heroVideo
+    typeof window !== 'undefined' && window.innerWidth > 760 ? smallHeroVideo : heroVideo
   );
 
-  const handleVideoSrcSet = () => {
-    if (window.innerWidth < 760) {
+  const { width } = useViewportSize();
+
+  const handleVideoSrcSet = (width:number) => {
+    if (width < 760) {
       setVideoSrc(smallHeroVideo);
     } else {
       setVideoSrc(heroVideo);
@@ -18,10 +21,15 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleVideoSrcSet);
+    // Встановлюємо відео на початковому рендері
+    handleVideoSrcSet(width);
 
+    // Додаємо обробник подій для зміни розміру вікна
+    window.addEventListener("resize", ()=>handleVideoSrcSet(width));
+
+    // Прибираємо обробник подій при виході з компонента
     return () => {
-      window.removeEventListener("reisze", handleVideoSrcSet);
+      window.removeEventListener("resize", ()=>handleVideoSrcSet(width));
     };
   }, []);
 
