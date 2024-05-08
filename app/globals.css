@@ -45,11 +45,11 @@ canvas {
   }
 
   .nav-height {
-    @apply h-[calc(100vh-60px)];
+    @apply h-[calc(100dvh-60px)];
   }
 
   .nav-height-full {
-    @apply h-[calc(100vh+60px)];
+    @apply h-[calc(100dvh+60px)];
   }
 
   .btn {

@@ -18,6 +18,9 @@ const config: Config = {
         },
         zinc: "#101010",
       },
+      transitionProperty: {
+        'height': 'height',
+      }
     },
   },
   plugins: [],

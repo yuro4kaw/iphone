@@ -39,7 +39,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="w-full nav-height sm:nav-height-full md:nav-height bg-black relative">
+    <section className="w-full nav-height sm:nav-height-full md:nav-height bg-black relative transition-[height] duration-1000 ease-in-out delay-0">
       <div className="h-5/6 w-full flex-center flex-col">
         <p id="hero" className="hero-title">
           iPhone 15 Pro
